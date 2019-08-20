@@ -1,0 +1,41 @@
+
+#sub-title-container{
+    text-align: center;
+}
+#sub-title-container p{
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+#sub-title-container hr{
+    width: 70%;
+}
+
+.paragraph{
+    display: block;
+    opacity: 0;
+    margin: 0 auto;
+    width: 70%;
+    margin-top: 40px;
+    font-size: 13px;
+}
+
+.paragraph:not(:first-child){
+    margin-top: 70px;
+}
+.paragraph h3{
+    color: #33b5e5;
+}
+
+
+
+/* @media only screen and (min-width: 865px) and (max-width: 1024px){
+    .about{
+        height: 70%
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1600px){
+    .about{
+        height: 80%
+    }
+} */

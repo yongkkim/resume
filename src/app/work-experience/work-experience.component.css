@@ -1,0 +1,49 @@
+.each_exp{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+.company_duration{
+    width: 70%;
+    float: right;
+}
+.company_duration span{
+    font-size: 15px;
+}
+
+.col:nth-child(2){
+    flex-grow: 3.5;
+}
+.col:nth-child(1){
+    flex-grow: 2;
+}
+.row{
+    margin-top: 20px;
+}
+
+#sub-title-container{
+    text-align: center;
+    margin-bottom: 30px;
+}
+#sub-title-container p{
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: unset;
+}
+#sub-title-container hr{
+    width: 70%;
+}
+
+.desc-list{
+    margin-top:20px;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+.desc-list li{
+    font-size: 12px;
+}
+
+.exp-list{
+    opacity: 0;
+}

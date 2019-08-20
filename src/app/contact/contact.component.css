@@ -1,0 +1,17 @@
+#sub-title-container{
+    text-align: center;
+    margin-bottom: 30px;
+}
+#sub-title-container p{
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: unset;
+}
+#sub-title-container hr{
+    width: 70%;
+}
+
+.contents{
+    display: block;
+    text-align: center;
+}

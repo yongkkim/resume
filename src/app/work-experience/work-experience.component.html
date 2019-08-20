@@ -1,0 +1,28 @@
+<div class="info-container">
+  <h1 [ngClass]="title" (mouseover)="title='title exp text-info animated bounce infinite'"
+    (mouseout)="title='title exp text-info'">
+    Work Experience </h1>
+  <div id="sub-title-container">
+    <p class="about sub-title">The only source of knowledge is experience.</p>
+    <p class="about sub-title"> - Albert Einstein</p>
+    <hr />
+  </div>
+  <div class="contents">
+    <div class="container">
+      <div class="row exp-list" *ngFor="let exp of experiences; let i = index">
+        <div class="col">
+          <div class="company_duration">
+            <span>{{exp.company}}</span><br />
+            <span>{{exp.duration}}</span>
+          </div>
+        </div>
+        <div class="col">
+          <span>{{exp.position}}</span>
+          <ul class="desc-list">
+            <li *ngFor="let desc of exp.description">{{desc}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

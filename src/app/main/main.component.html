@@ -1,0 +1,32 @@
+<ul id="page-group">
+  <li class="page first">
+    <div id="image-mask">
+      <h1 id="greetings" class="fadeInLeft animated">Hi! I am</h1>
+      <h1 [ngClass]="title" (mouseover)="title='title main animated bounce infinite'" (mouseout)="title='title main'">
+        YONG
+        KUK KIM
+      </h1>
+      <img id="pic-of-me" class="fadeInLeft animated" src='../../assets/me.jpg' />
+    </div>
+  </li>
+  <li class="page about-page">
+    <div class="left">
+      <app-about></app-about>
+    </div>
+  </li>
+  <li class="page work-exp">
+    <div class="right">
+      <app-work-experience></app-work-experience>
+    </div>
+  </li>
+  <li class="page projects">
+    <div class="left">
+      <app-projects></app-projects>
+    </div>
+  </li>
+  <li class="page contact">
+    <div class="right">
+      <app-contact></app-contact>
+    </div>
+  </li>
+</ul>
