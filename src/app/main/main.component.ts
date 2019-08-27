@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     document.getElementById("greetings").addEventListener('animationend', this.fadeout);
     document.getElementById("pic-of-me").addEventListener('animationend', this.fadeout);
+    let titles = document.getElementsByClassName("title") as HTMLCollectionOf<HTMLElement>;
   }
 
   fadeout = () => {

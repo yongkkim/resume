@@ -10,17 +10,19 @@
     width: 100%;
     border-radius: 30px;
     text-align: center;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 #pic-of-me{
     animation-duration: 2s;
+    -ms-animation-duration: 2s;
     width: 280px;
     height: 280px;
     border-radius: 50px;
 }
 #greetings{
     animation-duration: 2s;
+    -ms-animation-duration: 2s;
     font-size: 50px;
     color: white;
 }
@@ -36,6 +38,7 @@
     height: 100%;
 }
 .first{
+    /* background-image: url('../../assets/web_background2.jpg'); for localhost */
     background-image: url('../../assets/web_background2.jpg');
     background-size: 100% 100%;
     height: 100%;
@@ -55,6 +58,7 @@
 }
 .title{
     animation-duration: 2s;
+    -ms-animation-duration: 2s;
     margin: 0 auto;
     margin-bottom: 30px;
     width: fit-content;
@@ -68,7 +72,6 @@
     font-size: 85px;
 }
 .contents{
-    font-size: 20px;
     letter-spacing: 2px;
     margin: 0 auto;
     padding-bottom: 40px;
@@ -77,4 +80,41 @@
 
 .contents span{
     font-weight: bold;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 720px) {
+    /* main */
+
+    .first{
+        background-size: cover;
+    }
+
+    #image-mask{
+        top: 100px;
+        bottom: unset;
+    }
+
+    #greetings{
+        animation-duration: 1s;
+        -ms-animation-duration: 1s;
+        font-size: 25px;
+    }
+
+    .main{
+        font-size: 50px;
+    }
+
+    #pic-of-me{
+        animation-duration: 1s;
+        -ms-animation-duration: 1s;
+        width: 180px;
+        height: 180px;
+        border-radius: 25px;
+    }
+
+    /* about */
+
+    .contents{
+        width: 100%
+    }
 }

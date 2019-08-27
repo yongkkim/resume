@@ -13,17 +13,17 @@
       <div class="row first-row">
         <div class="col">
           <div class="each-project">
-            <img class="video-background" src="../../assets/angular.jpg" />
+            <img class="video-background" src="assets/angular.jpg" />
             <video class="video" muted loop="infinite" (mouseover)="playVideo($event)" (mouseout)="pauseVideo($event)">
-              <source src="../../assets/angular_proj.mp4" type="video/mp4">
+              <source src="assets/angular_proj.mp4" type="video/mp4">
             </video>
           </div>
         </div>
-        <div class="col">
+        <div class="col" *ngIf="isLaptop()">
           <div class="each-project">
-            <img class="video-background" src="../../assets/react.jpg" />
+            <img class="video-background" src="assets/react.jpg" />
             <video class="video" muted loop="infinite" (mouseover)="playVideo($event)" (mouseout)="pauseVideo($event)">
-              <source src="../../assets/react_proj.mp4" type="video/mp4">
+              <source src="assets/react_proj.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -36,23 +36,51 @@
             </ul>
             <div id="source-container">
               <a class="source text-info" href="https://yongkkim.github.io/myprojects/" target="_blank">
-                <img style="margin-bottom: 5px;" src="../../assets/website.png" /> Visit this
+                <img style="margin-bottom: 5px;" src="assets/website.png" /> Visit this
                 website</a><a class="source with-website"
-                href="https://github.com/yongkkim/myprojects/tree/master/lolsearch/searchLeague" target="_blank"><img
-                  style="width: 25px; height: 25px; margin-bottom: 5px;" src="../../assets/github.png" /> Check
-                source code</a>
+                href="https://github.com/yongkkim/myprojects/tree/master/lolsearch/searchLeague" target="_blank">
+                <br *ngIf="!isLaptop()" /> <!-- Mobile version --><img
+                  style="width: 25px; height: 25px; margin-bottom: 5px; margin-left: 5px" src="assets/github.png" />
+                Check source code</a>
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col" *ngIf="isLaptop()">
           <div class="each-project">
             <ul id="react-desc">
               <li class="desc" *ngFor="let point of project_desc[1]">{{point}}</li>
             </ul>
             <a class="source text-info" href="https://github.com/yongkkim/myprojects/tree/master/React_Calendar"
-              target="_blank"><img style="width: 25px; height: 25px; margin-bottom: 5px;"
-                src="../../assets/github.png" /> Check
+              target="_blank">
+              <img style="width: 25px; height: 25px; margin-bottom: 5px;" src="assets/github.png" /> Check
               source code</a>
+          </div>
+        </div>
+      </div>
+      <div class="row third-row" *ngIf="!isLaptop()">
+        <!-- Mobile version -->
+        <div class="col">
+          <div class="each-project">
+            <img class="video-background" src="assets/react.jpg" />
+            <video class="video" muted loop="infinite" (mouseover)="playVideo($event)" (mouseout)="pauseVideo($event)">
+              <source src="assets/react_proj.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="row fourth-row" *ngIf="!isLaptop()">
+        <!-- Mobile version -->
+        <div class="col">
+          <div class="each-project">
+            <ul id="react-desc">
+              <li class="desc" *ngFor="let point of project_desc[1]">{{point}}</li>
+            </ul>
+            <div id="source-container">
+              <a class="source text-info" href="https://github.com/yongkkim/myprojects/tree/master/React_Calendar"
+                target="_blank">
+                <img style="width: 25px; height: 25px; margin-bottom: 5px;" src="assets/github.png" /> Check
+                source code</a>
+            </div>
           </div>
         </div>
       </div>

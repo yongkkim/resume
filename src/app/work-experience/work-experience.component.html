@@ -10,14 +10,20 @@
   <div class="contents">
     <div class="container">
       <div class="row exp-list" *ngFor="let exp of experiences; let i = index">
-        <div class="col">
+        <div class="col" *ngIf="isLaptop()">
           <div class="company_duration">
             <span>{{exp.company}}</span><br />
             <span>{{exp.duration}}</span>
           </div>
         </div>
         <div class="col">
-          <span>{{exp.position}}</span>
+          <div class="job-info" *ngIf="!isLaptop()">
+            <!-- Mobile -->
+            <span>{{exp.position}}<br /></span>
+            <span>{{exp.company}}<br /></span>
+            <span>{{exp.duration}}</span>
+          </div>
+          <span *ngIf="isLaptop()">{{exp.position}}</span>
           <ul class="desc-list">
             <li *ngFor="let desc of exp.description">{{desc}}</li>
           </ul>

@@ -13,6 +13,7 @@ export class WorkExperienceComponent implements OnInit {
   public experiences: Array<Experience> = [];
   private each_experience: Experience;
   public title: string = "title exp text-info";
+
   ngOnInit() {
     this.each_experience = {
       position: "Junior Developer",
@@ -35,7 +36,7 @@ export class WorkExperienceComponent implements OnInit {
       company: "Ministry of Children, Community, and Social Services",
       address: "Toronto, ON",
       description: [
-        "Tested the functionality of applications and reported the defects to the developers within an agile environment",
+        "Tested the functionality of applications and reported the defects to developers within an agile environment",
         "Prepared test documentation, test cases, and scripts",
         "Executed functional, unit and regression testing based on the test cases",
         "Documented and tracked software issues/bugs/defects",
@@ -62,17 +63,38 @@ export class WorkExperienceComponent implements OnInit {
     window.addEventListener('scroll', this.scrollEvent, true);
   }
 
+  // ngAfterViewInit() {
+  //   if (!this.isLaptop()) {
+  //     let exp = document.getElementsByClassName("exp-list") as HTMLCollectionOf<HTMLElement>;
+  //     for (let i = 0; i < exp.length; i++) {
+  //       exp[i].setAttribute("style", "opacity: 1");
+  //     }
+  //   }
+  // }
+
   scrollEvent = () => {
     let exp = document.getElementsByClassName("exp-list") as HTMLCollectionOf<HTMLElement>;
     let exp_container = document.getElementsByClassName("info-container") as HTMLCollectionOf<HTMLElement>;
-    // window.innerHeight, document.documentElement.scrollTop
+    let scroll;
+    if (!this.isLaptop() || /edge\//i.test(window.navigator.userAgent)) {
+      scroll = window.pageYOffset;
+    } else {
+      scroll = document.documentElement.scrollTop;
+    }
+    let addition_top = !this.isLaptop() ? 150 : 0;
     for (let i = 0; i < exp.length; i++) {
-      if (document.documentElement.scrollTop > (exp[i].offsetTop + exp_container[1].offsetTop + exp[i].clientHeight) - window.outerHeight) {
-        //console.log("here");
+      if (scroll > (exp[i].offsetTop + exp_container[1].offsetTop + exp[i].clientHeight - addition_top) - window.outerHeight) {
         exp[i].setAttribute("style", "opacity: 1");
         exp[i].classList.add("animated", "slideInLeft");
       }
     }
   }
 
+  isLaptop() {
+    if (window.innerWidth > 320 && window.innerWidth <= 720) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
