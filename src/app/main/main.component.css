@@ -82,7 +82,31 @@
     font-weight: bold;
 }
 
+#pagination{
+    position: fixed;
+    animation-duration: 2s;
+    -ms-animation-duration: 2s;
+    list-style: none;
+    right: 50px;
+    bottom: 100px;
+    width: 150px;
+    opacity: 0;
+}
+#pagination li{
+    cursor: pointer;
+    line-height: 70px;
+    font-size: 20px;
+    height: 70px;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+#pagination li:hover{
+background-color: #17a2b8!important;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 720px) {
+
     /* main */
 
     .first{
