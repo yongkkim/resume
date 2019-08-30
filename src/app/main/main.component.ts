@@ -10,6 +10,7 @@ export class MainComponent implements OnInit {
 
   constructor() { }
   public title: string = "title main fadeInRight animated";
+  public page: string = "";
   public scroll;
   public pages = document.getElementsByClassName("page") as HTMLCollectionOf<HTMLElement>;
 
@@ -44,32 +45,64 @@ export class MainComponent implements OnInit {
       pagination.classList.remove("animated", "fadeIn");
       pagination.classList.add("animated", "fadeOut");
     }
+    if (this.scroll == 0) {
+      this.changeBackgroundColor(0);
+    } else if (this.pages[2].offsetTop > Number(this.scroll.toFixed(0)) && Number(this.scroll.toFixed(0)) >= this.pages[1].offsetTop) {
+      this.changeBackgroundColor(1);
+    } else if (this.pages[3].offsetTop > Number(this.scroll.toFixed(0)) && Number(this.scroll.toFixed(0)) >= this.pages[2].offsetTop) {
+      this.changeBackgroundColor(2);
+    } else if (this.pages[4].offsetTop - this.pages[4].offsetHeight > Number(this.scroll.toFixed(0)) && Number(this.scroll.toFixed(0)) >= this.pages[3].offsetTop) {
+      this.changeBackgroundColor(3);
+    } else if (this.scroll > (this.pages[4].offsetTop - this.pages[4].offsetHeight)) {
+      this.changeBackgroundColor(4);
+    }
+  }
+
+  changeBackgroundColor(nth: number) {
+    // console.log(nth);
+    let children = document.getElementById("pagination").children as HTMLCollectionOf<HTMLElement>;
+    for (let i = 0; i < children.length; i++) {
+      if (nth == 0) {
+        children[i].className = "";
+      } else {
+        if (i == nth) {
+          children[nth].className = "active-page";
+        } else {
+          children[i].className = "";
+        }
+      }
+    }
   }
 
   top = () => {
     $("html, body").animate({
       scrollTop: 0
     }, 1500)
+    this.changeBackgroundColor(0);
   }
   profile = () => {
     $("html, body").animate({
       scrollTop: this.pages[0].scrollHeight
     }, 1500)
+    this.changeBackgroundColor(1);
   }
   work = () => {
     $("html, body").animate({
       scrollTop: this.pages[2].offsetTop
     }, 1500)
+    this.changeBackgroundColor(2);
   }
   projects = () => {
     $("html, body").animate({
       scrollTop: this.pages[3].offsetTop
     }, 1500)
+    this.changeBackgroundColor(3);
   }
   contact = () => {
     $("html, body").animate({
       scrollTop: document.documentElement.scrollHeight
     }, 1500)
+    this.changeBackgroundColor(4);
   }
   isLaptop() {
     if (window.innerWidth > 320 && window.innerWidth <= 720) {
