@@ -9,9 +9,8 @@ export class ContactComponent implements OnInit {
 
   constructor() { }
 
-  public title: string = "title contact-list text-info"
-
   ngOnInit() {
+    console.log("hi it's contact");
   }
 
 }

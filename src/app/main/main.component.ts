@@ -50,7 +50,6 @@ export class MainComponent implements OnInit {
     } else if (this.pages[2].offsetTop > Number(this.scroll.toFixed(0)) && Number(this.scroll.toFixed(0)) >= this.pages[1].offsetTop) {
       this.changeBackgroundColor(1);
     } else if (this.pages[3].offsetTop > Number(this.scroll.toFixed(0)) && Number(this.scroll.toFixed(0)) >= this.pages[2].offsetTop) {
-      //console.log(this.pages[3].offsetTop, Number(this.scroll.toFixed(0)))
       this.changeBackgroundColor(2);
     } else if (this.pages[4].offsetTop - this.pages[4].offsetHeight > Number(this.scroll.toFixed(0)) && Number(this.scroll.toFixed(0)) >= this.pages[3].offsetTop) {
       this.changeBackgroundColor(3);

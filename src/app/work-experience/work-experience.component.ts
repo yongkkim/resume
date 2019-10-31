@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Experience } from './expTemplate';
 
 @Component({
@@ -12,20 +12,18 @@ export class WorkExperienceComponent implements OnInit {
 
   public experiences: Array<Experience> = [];
   private each_experience: Experience;
-  public title: string = "title exp text-info";
 
   ngOnInit() {
     this.each_experience = {
-      position: "Junior Developer",
+      position: "Junior Web Developer (Contract)",
       duration: "Apr.2019 - July.2019",
       company: "Bell",
       address: "Mississauga, ON",
       description: [
-        "Created and improved features as requested for applications to improve the performance and quality of data, which reduced complaints from end users and increased the accuracy of data searches from databases",
+        "Upgraded software to improve the performance and database management, and reduce complaints from end users",
         "Created automated Node.js scripts to improve the collection and parsing of data in JSON and HTML",
-        "Performed QA tests on data from large active databases using SQL stored procedures",
-        "Participated in data collection in order to have a better understanding of analytics",
-        "Created UIs to rework Windows Form Applications to Angular Web Applications"
+        "Performed QA test on data from large active databases using SQL stored procedures",
+        "Created UI to rework Windows Form Application to Angular Web Application"
       ]
     }
     this.experiences.push(this.each_experience);
@@ -37,11 +35,10 @@ export class WorkExperienceComponent implements OnInit {
       address: "Toronto, ON",
       description: [
         "Tested the functionality of applications and reported the defects to developers within an agile environment",
-        "Prepared test documentation, test cases, and scripts",
         "Executed functional, unit and regression testing based on the test cases",
-        "Documented and tracked software issues/bugs/defects",
+        "Tracked software issues/bugs/defects using Team Foundation Server",
         "Assisted developers in deploying the code to different types of testing environments",
-        "Reviewed and investigated the incidents raised by the end users in a production environment"
+        "Reviewed and investigated the incidents raised by the end users"
       ]
     }
     this.experiences.push(this.each_experience);
@@ -56,11 +53,10 @@ export class WorkExperienceComponent implements OnInit {
         "Improved overall UI of the website for users to conveniently explore and interact with other users",
         "Created a user log-in system using account credentials for better security",
         "Analyzed solutions to help the owner of the website increase sales",
-        "Audited the back end of the web app to ensure data integrity"
+        "Audited the back end of the web app to ensure data integrity using phpMyAdmin"
       ]
     }
     this.experiences.push(this.each_experience);
-    window.addEventListener('scroll', this.scrollEvent, true);
   }
 
   // ngAfterViewInit() {
@@ -72,7 +68,7 @@ export class WorkExperienceComponent implements OnInit {
   //   }
   // }
 
-  scrollEvent = () => {
+  @HostListener('window:scroll') scrollEvent = () => {
     let exp = document.getElementsByClassName("exp-list") as HTMLCollectionOf<HTMLElement>;
     let exp_container = document.getElementsByClassName("info-container") as HTMLCollectionOf<HTMLElement>;
     let scroll;
@@ -85,7 +81,7 @@ export class WorkExperienceComponent implements OnInit {
     for (let i = 0; i < exp.length; i++) {
       if (scroll > (exp[i].offsetTop + exp_container[1].offsetTop + exp[i].clientHeight - addition_top) - window.outerHeight) {
         exp[i].setAttribute("style", "opacity: 1");
-        exp[i].classList.add("animated", "slideInLeft");
+        exp[i].classList.add("animated", "fadeIn");
       }
     }
   }

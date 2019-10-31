@@ -17,7 +17,8 @@
     margin: 0 auto;
     width: 70%;
     margin-top: 40px;
-    font-size: 13px;
+    font-size: 20px;
+    text-align: justify;
 }
 
 .paragraph:not(:first-child){

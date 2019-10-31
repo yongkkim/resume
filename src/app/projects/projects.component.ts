@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Projects } from './projects';
 
 @Component({
   selector: 'app-projects',
@@ -9,96 +10,90 @@ export class ProjectsComponent implements OnInit {
 
   constructor() { }
 
-  public title: string = "title project text-info";
-  public video: string = "";
-  public project_desc: Array<string[]> = [];
+  public project_desc;
+  public rowNum: number = 0;
+  public projs: Projects;
+  public left: string = "";
+  public right: string = "";
+  public desc: boolean = false;
+  public video: boolean = false;
+  public startVideo: boolean = true;
+  // @ViewChild('option') option: ElementRef;
 
   ngOnInit() {
-    let desc: string[] = [];
 
-    desc.push("Built Single Page website using Angular and REST API for users of League of Legends to search for their game history");
-    desc.push("Separated and grouped a large number of small JSON data chunks into relevant blocks");
-    desc.push("Implemented a search functionality to find user’s profile and match history from records in the server");
-    desc.push("Handled errors from HTTP Responses and input on submit and displayed proper error messages");
-    desc.push("Included mobile responsive design and cross-browser compatibility for different browsers and devices");
-    desc.push("Designed pop-up description of multiple images and content structure enhancing UI/UX for users");
-    this.project_desc.push(desc);
+    this.projs = new Projects();
+    this.project_desc = this.projs.getProject();
+    var userAgent = navigator.userAgent || navigator.vendor;
 
-    desc = [];
-    desc.push("Created user friendly calendar using React for making plans for each day");
-    desc.push("Implemented user-friendly UI to easily change month and year and manage all scheduled plans");
-    desc.push("Provided users options to view, add, delete one plan, undo, and clear all plans on each day");
-    desc.push("Stored data into cookie to keep on tracking plans for 30 days");
-    this.project_desc.push(desc);
-    window.addEventListener('scroll', this.scrollEvent, true);
-  }
-
-  // ngAfterViewInit() {
-  //   if (!this.isLaptop()) {
-  //     let proj_a = document.getElementById("angular-desc");
-  //     let proj_r = document.getElementById("react-desc");
-  //     let links = document.getElementsByClassName("source") as HTMLCollectionOf<HTMLElement>;
-  //     proj_a.style.opacity = "1";
-  //     proj_r.style.opacity = "1";
-
-  //     for (let i = 0; i < links.length; i++) {
-  //       links[i].style.opacity = "1";
-  //       links[i].classList.add("animated", "fadeInUp");
-  //     }
-  //   }
-  // }
-
-  scrollEvent = () => {
-    let proj_a = document.getElementById("angular-desc");
-    let proj_r = document.getElementById("react-desc");
-    let proj_image = document.getElementsByClassName("video-background")[0].clientHeight + 200;
-
-    let links = document.getElementsByClassName("source") as HTMLCollectionOf<HTMLElement>;
-    let desc = document.getElementsByClassName("video-background")[0].clientHeight + 420;
-    let proj_container = document.getElementsByClassName("info-container") as HTMLCollectionOf<HTMLElement>;
-
-    let scroll;
-    if (!this.isLaptop() || /edge\//i.test(window.navigator.userAgent)) {
-      scroll = window.pageYOffset;
-    } else {
-      scroll = document.documentElement.scrollTop;
-    }
-
-    if (scroll > (proj_image + proj_container[2].offsetTop + proj_a.clientHeight) - window.outerHeight) {
-      proj_a.style.opacity = "1";
-      proj_a.classList.add("animated", "slideInLeft");
-
-      proj_r.style.opacity = "1";
-      proj_r.classList.add("animated", "slideInRight");
-    }
-
-    if (scroll > (desc + proj_container[2].offsetTop + proj_a.clientHeight) - window.outerHeight) {
-      for (let i = 0; i < links.length; i++) {
-        links[i].style.opacity = "1";
-        links[i].classList.add("animated", "fadeInUp");
+    if (!(/iPad|iPhone|iPod/.test(userAgent)) || window.innerWidth >= 450) {
+      if (this.project_desc[this.project_desc.length - 1].length == 1) {
+        this.project_desc[this.project_desc.length - 1].push({ desc: [], image: "empty" });
       }
     }
   }
 
-  playVideo = (event) => {
-    event.target.previousSibling.style.webkitFilter = "blur(7px)";
-    event.target.previousSibling.style.filter = "blur(7px)";
-    event.target.style.opacity = "1";
-    event.target.play();
+  //[ngClass] using this.left and this.right works but if you move a mouse too fast, it sometimes doesn't detect (mouseleave)
+  //(mouseenter) and (mouseleave) with event solved the problem
+  openMenu = (event) => {
+    // this.left = "animated slideInLeft";
+    // this.right = "animated slideInRight";
+    let options = event.target.children;
+    for (let i = 0; i < options.length; i++) {
+      if (i < 3) {
+        options[i].classList.remove("animated", "slideOutLeft");
+        options[i].classList.add("animated", "slideInLeft");
+      } else {
+        options[i].classList.remove("animated", "slideOutRight");
+        options[i].classList.add("animated", "slideInRight");
+      }
+    }
   }
 
-  pauseVideo = (event) => {
-    event.target.previousSibling.style.webkitFilter = "blur(0)";
-    event.target.previousSibling.style.filter = "blur(0)";
-    event.target.style.opacity = "0";
-    event.target.pause();
+  closeMenu = (event) => {
+    // this.left = "animated slideOutLeft";
+    // this.right = "animated slideOutRight";
+
+    let options = event.target.children;
+    for (let i = 0; i < options.length; i++) {
+      if (i < 3) {
+        options[i].classList.remove("animated", "slideInLeft");
+        options[i].classList.add("animated", "slideOutLeft");
+      } else {
+        options[i].classList.remove("animated", "slideInRight");
+        options[i].classList.add("animated", "slideOutRight");
+      }
+    }
   }
 
-  isLaptop() {
-    if (window.innerWidth > 320 && window.innerWidth <= 720) {
-      return false;
+  openSource = (event, type: string) => {
+    let menu = event.target.parentNode;
+    let each_project = event.target.parentNode.parentNode;
+    menu.style.display = "none";
+    each_project.getElementsByClassName("proj-desc")[0].style.display = "block";
+    if (type == "video") {
+      each_project.getElementsByClassName("video")[0].style.display = "block";
+      each_project.getElementsByClassName("desc-block")[0].style.display = "none";
     } else {
-      return true;
+      each_project.getElementsByClassName("video")[0].style.display = "none";
+      each_project.getElementsByClassName("desc-block")[0].style.display = "block";
+    }
+  }
+
+  backMenu = (event) => {
+    let proj_desc = event.target.parentNode;
+    let each_project = event.target.parentNode.parentNode;
+    proj_desc.style.display = "none";
+    each_project.getElementsByClassName("menu")[0].style.display = "block";
+  }
+
+  playVideo = (event) => {
+    this.startVideo = this.startVideo ? false : true;
+
+    if (this.startVideo) {
+      event.target.play();
+    } else {
+      event.target.pause();
     }
   }
 }

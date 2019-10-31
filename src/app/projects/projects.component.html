@@ -1,6 +1,5 @@
 <div class="info-container">
-  <h1 [ngClass]="title" (mouseover)="title='title project text-info animated bounce infinite'"
-    (mouseout)="title='title project text-info'">
+  <h1 class="title project text-info">
     Projects</h1>
   <div id="sub-title-container">
     <p class="about sub-title">Everyone visualizes whether they know it or not. Visualizing is the great secret of
@@ -10,78 +9,28 @@
   </div>
   <div class="contents">
     <div class="container">
-      <div class="row first-row">
-        <div class="col">
+      <div class="row" *ngFor="let row of project_desc">
+        <div class="col" *ngFor="let proj of row">
           <div class="each-project">
-            <img class="video-background" src="assets/angular.jpg" />
-            <video class="video" muted loop="infinite" (mouseover)="playVideo($event)" (mouseout)="pauseVideo($event)">
-              <source src="assets/angular_proj.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <div class="col" *ngIf="isLaptop()">
-          <div class="each-project">
-            <img class="video-background" src="assets/react.jpg" />
-            <video class="video" muted loop="infinite" (mouseover)="playVideo($event)" (mouseout)="pauseVideo($event)">
-              <source src="assets/react_proj.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-      <div class="row second-row">
-        <div class="col">
-          <div class="each-project">
-            <ul id="angular-desc">
-              <li class="desc" *ngFor="let point of project_desc[0]">{{point}}</li>
+            <ul class="menu" [ngStyle]="{'pointer-events' : proj.desc.length !== 0 ? 'initial' : 'none'}"
+              (mouseenter)="openMenu($event)" (mouseleave)="closeMenu($event)">
+              <li>{{proj.title}}</li>
+              <li (click)="openSource($event, 'video')">Video</li>
+              <li (click)="openSource($event, 'desc')">Description</li>
+              <li><a target="_blank" href={{proj.website}}>Website</a></li>
+              <li><a target="_blank" href={{proj.github}}>Github</a></li>
             </ul>
-            <div id="source-container">
-              <a class="source text-info" href="https://yongkkim.github.io/myprojects/" target="_blank">
-                <img style="margin-bottom: 5px;" src="assets/website.png" alt="Website" /> Visit this
-                website</a><a class="source with-website"
-                href="https://github.com/yongkkim/myprojects/tree/master/lolsearch/searchLeague" target="_blank">
-                <br *ngIf="!isLaptop()" /> <!-- Mobile version --><img
-                  style="width: 25px; height: 25px; margin-bottom: 5px; margin-left: 5px" src="assets/github.png"
-                  alt="Github" />
-                Check source code</a>
+            <div class="proj-desc">
+              <div class="back-to-menu" (click)="backMenu($event)">Back to Menu</div>
+              <ul class="desc-block fadeIn animated">
+                <li *ngFor="let each of proj.desc">{{each}}</li>
+              </ul>
+              <video class="video fadeIn animated" autoplay muted loop="infinite" (click)="playVideo($event)">
+                <source src={{proj.video}} type="video/mp4">
+              </video>
             </div>
-          </div>
-        </div>
-        <div class="col" *ngIf="isLaptop()">
-          <div class="each-project">
-            <ul id="react-desc">
-              <li class="desc" *ngFor="let point of project_desc[1]">{{point}}</li>
-            </ul>
-            <a class="source text-info" href="https://github.com/yongkkim/myprojects/tree/master/React_Calendar"
-              target="_blank">
-              <img style="width: 25px; height: 25px; margin-bottom: 5px;" src="assets/github.png" alt="Github" /> Check
-              source code</a>
-          </div>
-        </div>
-      </div>
-      <div class="row third-row" *ngIf="!isLaptop()">
-        <!-- Mobile version -->
-        <div class="col">
-          <div class="each-project">
-            <img class="video-background" src="assets/react.jpg" />
-            <video class="video" muted loop="infinite" (mouseover)="playVideo($event)" (mouseout)="pauseVideo($event)">
-              <source src="assets/react_proj.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-      <div class="row fourth-row" *ngIf="!isLaptop()">
-        <!-- Mobile version -->
-        <div class="col">
-          <div class="each-project">
-            <ul id="react-desc">
-              <li class="desc" *ngFor="let point of project_desc[1]">{{point}}</li>
-            </ul>
-            <div id="source-container">
-              <a class="source text-info" href="https://github.com/yongkkim/myprojects/tree/master/React_Calendar"
-                target="_blank">
-                <img style="width: 25px; height: 25px; margin-bottom: 5px;" src="assets/github.png" alt="Github" />
-                Check
-                source code</a>
+            <div class="video-bg-container">
+              <img *ngIf="proj.desc.length != 0" class="video-background" src={{proj.image}} />
             </div>
           </div>
         </div>
