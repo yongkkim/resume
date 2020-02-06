@@ -105,6 +105,7 @@ background-color: #17a2b8!important;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 720px) {
+
     #pagination{
         bottom: unset;
         top: 0;
@@ -122,9 +123,10 @@ background-color: #17a2b8!important;
         width: 20%;
     }
     /* main */
-
     .first{
-        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: unset;
     }
 
     #image-mask{
