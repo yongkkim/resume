@@ -17,7 +17,7 @@
               <li>{{proj.title}}</li>
               <li (click)="openSource($event, 'video')">Video</li>
               <li (click)="openSource($event, 'desc')">Description</li>
-              <li><a target="_blank" href={{proj.website}}>Website</a></li>
+              <li *ngIf="proj.website !== ''"><a target="_blank" href={{proj.website}}>Website</a></li>
               <li><a target="_blank" href={{proj.github}}>Github</a></li>
             </ul>
             <div class="proj-desc">

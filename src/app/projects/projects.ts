@@ -6,10 +6,11 @@ export class Projects {
 
         let game = {
             title: "In Game Web App",
-            desc: ["Built a responsive web app using Angular, JavaScript, and third-party APIs to provide users League of Legends game history",
+            desc: ["Technology Stack: Angular 6+, JavaScript, RxJS",
+                "Built a responsive web app with grid UI using Angular 6+, JavaScript, and third-party APIs to provide users League of Legends game history",
                 "Implemented a search engine for users to search for profiles and match history of any user",
-                "Provided infotips for multiple images and texts in grid UI structure",
-                "Handled errors from HTTP Responses and input on submit and displayed proper error messages"],
+                "Provided description of multiple images and texts by hovering them over",
+                "Displayed error messages of HTTP Responses and inputs from users"],
             image: "assets/angular.jpg",
             website: "https://yongkkim.github.io/myprojects/",
             github: "https://github.com/yongkkim/myprojects/tree/master/lolsearch/searchLeague",
@@ -19,9 +20,10 @@ export class Projects {
 
         let calendar = {
             title: "Calendar",
-            desc: ["Built a schedulable calendar using React, JavaScript, and Moment.js",
+            desc: ["Technology Stack: React, JavaScript, Moment.js",
+                "Built a schedulable calendar using React",
                 "Implemented user-friendly UI to easily change month and year and manage all scheduled plans",
-                "Provided users options to view, add, delete one plan, undo, and clear all plans on each day",
+                "Allowed users to view, add, delete, delete all, and undo on each day",
                 "Used cookies in order to save previous plans for 30 days"],
             image: "assets/react.jpg",
             website: "https://yongkkim.github.io/calendar/",
@@ -33,16 +35,31 @@ export class Projects {
 
         let blog = {
             title: "Blog Website",
-            desc: ["Built a responsive blog website to provide brief explanations about an online game using React and third-party APIs",
-                "Used third party APIs to get resources such as images and descriptions of the game details",
-                "Focused on delivering information to users using videos, images, and texts in simple UI layout",
-                "Edited images to fit well to the website UI using Photoshop"],
+            desc: ["Technology Stack: React, Redux, Babel, Webpack, JavaScript, Photoshop",
+                "Built a blog website to provide my opinions and information about an online game with videos, images, and texts in simple UI layout using React",
+                "Used third party APIs to get resources of the game details",
+                "Edited images using Photoshop to fit well to the website UI"],
             image: "assets/lol_blog.png",
             website: "https://yongkkim.github.io/lol_blog/",
             github: "https://github.com/yongkkim/lol_blog.git",
             video: "assets/blog.mp4"
         };
         project_desc.push(blog);
+
+        let book = {
+            title: "Book Collection",
+            desc: ["Technology Stack: PHP, JavaScript, phpMyAdmin",
+                "Built a website to store book information using PHP",
+                "Displayed a collection of books by using CSS grid layout",
+                "Implemented email feature to send email to users to find a password",
+                "Allowed user to search for a book by words in its description",
+                "Provided the authentication for web pages by storing individual user’s information using sessions"],
+            image: "assets/Book_Collection.png",
+            website: "",
+            github: "https://github.com/yongkkim/myprojects/tree/master/Book%20Collection",
+            video: "assets/book_collection.mp4"
+        };
+        project_desc.push(book);
 
         let arrayWithTwo: Array<string[]> = [];
         var userAgent = navigator.userAgent || navigator.vendor;
