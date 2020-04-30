@@ -27,7 +27,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.6.11",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "rxjs": "^6.5.4",
     "web-animations-js": "^2.3.2",
     "zone.js": "^0.9.1"
